@@ -31,7 +31,7 @@ jobs:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
           always-auth: true
-      - run: npm ci
+      - run: yarn
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
