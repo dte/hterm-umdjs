@@ -41,18 +41,17 @@ export function buildHterm(repo, branch, outfile, tmpdir = TMPDIR) {
 }));
   `.replace(/^\s+/, '').replace(/\s+$/, '\n'));
 
-  const [, htermVersion] = fs.readFileSync(`${tmpdir}/hterm/doc/ChangeLog.md`).toString().match(/([\d.]+)/) || [];
-  const htermRev = execSync(`git ${gitargs} rev-parse HEAD`).toString().trim();
+  const htmermPackageJson = JSON.parse(fs.readFileSync(`${tmpdir}/hterm/package.json`).toString());
+  const { version } = htmermPackageJson;
   execSync(`rm -rf ${tmpdir}`);
   return {
-    version: htermVersion,
-    rev: htermRev,
+    version,
   };
 }
 
-export function updateVersion(packageJSONPath, htermVersion, htermRev) {
+export function updateVersion(packageJSONPath, htermVersion) {
   const pkg = JSON.parse(fs.readFileSync(packageJSONPath));
-  pkg.version = `${htermVersion ? `${htermVersion}.sha.` : ''}${htermRev.slice(0, 7)}`;
+  pkg.version = `${htermVersion}`;
   fs.writeFileSync(packageJSONPath, `${JSON.stringify(pkg, null, '  ')}\n`);
   return pkg.version;
 }
@@ -60,6 +59,6 @@ export function updateVersion(packageJSONPath, htermVersion, htermRev) {
 if (require.main === module) {
   const hterm = buildHterm(HTERM_REPO, HTERM_BRANCH, OUTFILE);
   console.log(`built ${OUTFILE}`); // eslint-disable-line no-console
-  const version = updateVersion('package.json', hterm.version, hterm.rev);
+  const version = updateVersion('package.json', hterm.version);
   console.log(version); // eslint-disable-line no-console
 }
