@@ -2,6 +2,9 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +16,7 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
         # Defaults to the user or organization that owns the workflow file
-        scope: '@dte'
+        # scope: '@dte'
     - run: yarn
     - run: yarn publish
       env:
