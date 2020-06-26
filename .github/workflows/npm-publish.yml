@@ -31,6 +31,7 @@ jobs:
           node-version: 12
           registry-url: 'https://npm.pkg.github.com'
           always-auth: true
+          scope: '@dte'
       - run: yarn
       - run: npm publish
         env:
