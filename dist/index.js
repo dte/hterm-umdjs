@@ -22652,7 +22652,7 @@ lib.resource.add('hterm/images/icon-96', 'image/png;base64',
 );
 
 lib.resource.add('hterm/concat/date', 'text/plain',
-'Fri, 26 Jun 2020 21:18:17 +0000'
+'Fri, 26 Jun 2020 22:12:06 +0000'
 );
 
 lib.resource.add('hterm/changelog/version', 'text/plain',
@@ -40007,7 +40007,7 @@ lib.resource.add('hterm/images/icon-96', 'image/png;base64',
 );
 
 lib.resource.add('hterm/concat/date', 'text/plain',
-'Fri, 26 Jun 2020 21:18:17 +0000'
+'Fri, 26 Jun 2020 22:12:06 +0000'
 );
 
 lib.resource.add('hterm/changelog/version', 'text/plain',

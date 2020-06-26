@@ -52,7 +52,7 @@ export function buildHterm(repo, branch, outfile, tmpdir = TMPDIR) {
 
 export function updateVersion(packageJSONPath, htermVersion, htermRev) {
   const pkg = JSON.parse(fs.readFileSync(packageJSONPath));
-  pkg.version = `${pkg.version.replace(/\+.*$/, '')}+${htermVersion ? `${htermVersion}.sha.` : ''}${htermRev.slice(0, 7)}`;
+  pkg.version = `${htermVersion ? `${htermVersion}.sha.` : ''}${htermRev.slice(0, 7)}`;
   fs.writeFileSync(packageJSONPath, `${JSON.stringify(pkg, null, '  ')}\n`);
   return pkg.version;
 }
